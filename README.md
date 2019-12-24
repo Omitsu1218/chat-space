@@ -23,6 +23,39 @@ Things you may want to cover:
 
 * ...
 
+## postsテーブル
+|Colum|Type|Options|  
+|-----|----|-------|  
+|image|text|
+|text|text|
+|user_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :group
+
+
+## usersテーブル
+|Colum|Type|Options|  
+|-----|----|-------|  
+|Name|string|null: false|
+|Email|string|null: false|
+|Password|string|null: false|
+
+### Association
+- has_many :posts
+- has_many :groups, through: :groups_users
+
+
+## groupsテーブル
+|Colum|Type|Options|  
+|-----|----|-------|  
+|group_name|string|null: false|
+
+### Association
+- has_many : posts
+- has_many : users, through: :groups_users
+
 ## groups_usersテーブル
 
 |Colum|Type|Options|  
