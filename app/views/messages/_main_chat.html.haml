@@ -1,0 +1,32 @@
+/メイン画面
+%div.chat-main
+  /グループ概要
+  %div.chat-main__group-info 
+    %div.chat-main__group-content 
+      %div.chat-main__group-name test
+      %ul.chat-main__group-member
+        Member&nbsp:&nbsp
+        %li.chat-main__group-member--name naoto
+    = link_to '#', class: "chat-main__group-edit" do
+      Edit
+  /メッセージ一覧
+  %div.chat-main__message-list
+    %div.chat-main__message-box
+      %div.chat-main__content
+        %p.chat-main__content--name naoto
+        %p.chat-main__content--date 2019/01/01(Wed)&nbsp17:00:00
+      %p.chat-main__letter こんにちは！
+    %div.chat-main__message-box
+      %div.chat-main__content
+        %p.chat-main__content--name naoto
+        %p.chat-main__content--date 2019/01/01(Wed)&nbsp17:00:00
+      %p.chat-main__letter こんにちは！
+  /メッセージフォーム
+  %div.chat-main__message-form
+    %form.chat-main__form{:action => "/", :method => "post"}
+      %div.chat-main__input
+        %input.chat-main__input--text{:type => "text", :placeholder => "type a message", :name => "text", :value => ""}
+        %label.chat-main__input--label{:for => "image"}
+          %i.far.fa-image
+          %input.chat-main__input--file{:type => "file", :name => "file", :id => "image"}
+      %input.chat-main__send{:type => "submit", :value => "Send"} 

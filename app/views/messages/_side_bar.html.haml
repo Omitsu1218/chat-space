@@ -1,0 +1,27 @@
+/ サイドバー画面
+%div.side-bar
+  / サイドバー ヘッダー
+  %div.side-bar__user 
+    %div.user-info 
+      %div.user-info__name naoto
+      %ul.user-info__icons
+        %li.user-info__icons--edit
+          = link_to "#" do
+            %i.fas.fa-edit
+        %li.user-info__icons--config
+          = link_to "#" do
+            %i.fa.fa-cog
+  / サイドバー グループリスト
+  %div.side-bar__group-list
+    %div.side-bar__content
+      = link_to "#", class: "side-bar__content--icon" do
+        %p.side-bar__content--team techcamp
+        %p.side-bar__content--message まだメッセージはありません
+    %div.side-bar__content
+      = link_to "#", class: "side-bar__content--icon" do
+        %p.side-bar__content--team techexpert
+        %p.side-bar__content--message まだメッセージはありません
+    %div.side-bar__content
+      = link_to "#", class: "side-bar__content--icon" do
+        %p.side-bar__content--team techconnect
+        %p.side-bar__content--message まだメッセージはありません
