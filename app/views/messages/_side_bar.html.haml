@@ -1,15 +1,16 @@
 / サイドバー画面
 .side-bar
   / サイドバー ヘッダー
-  .side-bar__user 
+  .side-bar__user
     .user-info 
-      .user-info__name naoto
+      .user-info__name
+        = current_user.name
       %ul.user-info__icons
         %li.user-info__icons--edit
           = link_to "#" do
             %i.fas.fa-edit
         %li.user-info__icons--config
-          = link_to "#" do
+          = link_to edit_user_path(current_user) do
             %i.fa.fa-cog
   / サイドバー グループリスト
   .side-bar__group-list
