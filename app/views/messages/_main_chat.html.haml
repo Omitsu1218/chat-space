@@ -6,8 +6,8 @@
       .chat-main__group-name test
       %ul.chat-main__group-member
         Member&nbsp:&nbsp
-        %li.chat-main__group-member--name naoto
-    = link_to '#', class: "chat-main__group-edit" do
+        %li.chat-main__group-member--name
+    = link_to edit_group_path(current_user), class: "chat-main__group-edit" do
       Edit
   /メッセージ一覧
   .chat-main__message-list

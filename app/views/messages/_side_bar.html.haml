@@ -7,7 +7,7 @@
         = current_user.name
       %ul.user-info__icons
         %li.user-info__icons--edit
-          = link_to "#" do
+          = link_to new_group_path do
             %i.fas.fa-edit
         %li.user-info__icons--config
           = link_to edit_user_path(current_user) do
@@ -15,14 +15,9 @@
   / サイドバー グループリスト
   .side-bar__group-list
     .side-bar__content
-      = link_to "#", class: "side-bar__content--icon" do
-        %p.side-bar__content--team techcamp
-        %p.side-bar__content--message まだメッセージはありません
-    .side-bar__content
-      = link_to "#", class: "side-bar__content--icon" do
-        %p.side-bar__content--team techexpert
-        %p.side-bar__content--message まだメッセージはありません
-    .side-bar__content
-      = link_to "#", class: "side-bar__content--icon" do
-        %p.side-bar__content--team techconnect
-        %p.side-bar__content--message まだメッセージはありません
+      - current_user.groups.each do |group_name|
+        = link_to '#', class: "side-bar__content--icon" do
+          .name.side-bar__content--team
+            = group_name.name
+            .side-bar__content--message
+              まだメッセージはありません

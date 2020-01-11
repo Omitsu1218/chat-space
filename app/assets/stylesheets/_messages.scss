@@ -72,9 +72,7 @@
     padding: 20px 20px 0 20px;
 
     .side-bar__content{
-      height: 65px;
       width: 260px;
-      margin-bottom: 40px;
 
       &--icon{
         text-decoration-line: none;
@@ -85,13 +83,14 @@
         color: $side-icon-letter-color;
         font-weight: bold;
         width: 260px;
-        margin-bottom: 5px;
+        margin-bottom: 40px;
       }
   
       &--message{
         font-size: 11px;
         color: $side-icon-letter-color;
         width: 260px;
+        margin-top: 5px;
       }
     }
   }
