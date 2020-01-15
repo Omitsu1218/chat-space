@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-## postsテーブル
+## messagesテーブル
 |Colum|Type|Options|  
 |-----|----|-------|  
 |image|text|

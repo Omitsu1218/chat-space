@@ -16,8 +16,8 @@
   .side-bar__group-list
     .side-bar__content
       - current_user.groups.each do |group_name|
-        = link_to '#', class: "side-bar__content--icon" do
+        = link_to group_messages_path(group_name), class: "side-bar__content--icon" do
           .name.side-bar__content--team
-            = group_name.name
+            %p.name.side-bar__content--name #{group_name.name}
             .side-bar__content--message
-              まだメッセージはありません
+              %p #{group_name.show_last_message}
