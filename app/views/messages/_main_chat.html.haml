@@ -1,32 +1,25 @@
-/メイン画面
 .chat-main
   /グループ概要
-  .chat-main__group-info 
-    .chat-main__group-content 
-      .chat-main__group-name test
+  .chat-main__group-info
+    .chat-main__group-content
+      .chat-main__group-name
+        = @group.name
       %ul.chat-main__group-member
         Member&nbsp:&nbsp
         %li.chat-main__group-member--name
-    = link_to edit_group_path(current_user), class: "chat-main__group-edit" do
+          - @group.users.each do |user|
+            = user.name
+    = link_to edit_group_path(@group), class: "chat-main__group-edit" do
       Edit
-  /メッセージ一覧
+    /メッセージ一覧
   .chat-main__message-list
-    .chat-main__message-box
-      .chat-main__content
-        %p.chat-main__content--name naoto
-        %p.chat-main__content--date 2019/01/01(Wed)&nbsp17:00:00
-      %p.chat-main__letter こんにちは！
-    .chat-main__message-box
-      .chat-main__content
-        %p.chat-main__content--name naoto
-        %p.chat-main__content--date 2019/01/01(Wed)&nbsp17:00:00
-      %p.chat-main__letter こんにちは！
+    = render @messages
   /メッセージフォーム
   .chat-main__message-form
-    %form.chat-main__form{action: "/", method: "post"}
+    = form_for [@group, @message], html: {class: "chat-main__form"} do |f|
       .chat-main__input
-        %input.chat-main__input--text{type: "text", placeholder: "type a message", name: "text", value: ""}
-        %label.chat-main__input--label{for: "image"}
-          %i.far.fa-image
-          %input.chat-main__input--file{type: "file", name: "file", id: "image"}
-      %input.chat-main__send{type: "submit", value: "Send"} 
+        = f.text_field :text, class: "chat-main__input--text",name: "text", placeholder: "type a message", value: ""
+        = f.label :image, class: "chat-main__input--label" do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: "chat-main__input--file", name: "file", id: "message_image"
+      = f.submit "Send", class: "chat-main__send"
