@@ -61,7 +61,7 @@ $(function(){
       $('.chat-main__send').prop('disabled', false);
     })
     .fail(function(){
-      alert('error');
+      alert('メッセージ送信に失敗しました');
       $('.chat-main__send').prop('disabled', false);
     })
   })
