@@ -16,5 +16,5 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-#画像が保管されるディレクトリ　コミットしたくない
+#画像が保管されるディレクトリ コミットしたくない
 public/uploads/*
