@@ -1,7 +1,6 @@
 $(function(){
   function buildHTML(message){
     if (message.image){
-      console.log('true')
       var html =
       `<div class="chat-main__message-box">
             <div class="chat-main__content">
@@ -21,7 +20,6 @@ $(function(){
           </div>`
       return html;
     } else {
-      console.log('false')
       var html =
       `<div class="chat-main__message-box">
             <div class="chat-main__content">
