@@ -1,8 +1,9 @@
 $(function(){
+  // メッセージ投稿時 & 自動更新時の処理
   function buildHTML(message){
     if (message.image){
       var html =
-      `<div class="chat-main__message-box">
+      `<div class="chat-main__message-box" data-message-id = ${message.id}>
             <div class="chat-main__content">
               <div class="chat-main__content--name">
                 ${message.user_name}
@@ -21,7 +22,7 @@ $(function(){
       return html;
     } else {
       var html =
-      `<div class="chat-main__message-box">
+      `<div class="chat-main__message-box" data-message-id = ${message.id}>
             <div class="chat-main__content">
               <div class="chat-main__content--name">
                 ${message.user_name}
@@ -39,6 +40,7 @@ $(function(){
     return html;
     };
   }
+  // 送信ボタンクリック時に発火
   $('#new_message').on('submit', function(e){
     e.preventDefault()
     var formData = new FormData(this);
@@ -51,6 +53,7 @@ $(function(){
       processData: false,
       contentType: false
     })
+    // 非同期での投稿 & 自動での画面スクロール
     .done(function(data){
       var html = buildHTML(data);
       $('.chat-main__message-list').append(html);
@@ -63,4 +66,31 @@ $(function(){
       $('.chat-main__send').prop('disabled', false);
     })
   })
+  // 自動更新時の処理(相手方)
+  var reloadMessages = function() {
+    last_message_id = $('.chat-main__message-box:last').data("message-id");
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages){
+      if (messages.length !== 0){
+      var insertHTML = '';
+      $.each(messages, function(index, letter){
+        insertHTML += buildHTML(letter);
+      });
+      $('.chat-main__message-list').append(insertHTML);
+      $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight});
+      }
+    })
+    .fail(function(){
+      alert('error');
+    });
+  };
+  // イベント発火時のタイミング 7秒に1回
+  if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+    setInterval(reloadMessages, 7000);
+  }
 });
