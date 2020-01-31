@@ -3,7 +3,7 @@ $(function(){
   function buildHTML(message){
     if (message.image){
       var html =
-      `<div class="chat-main__message-box" data-message-id = message.id>
+      `<div class="chat-main__message-box" data-message-id = ${message.id}>
             <div class="chat-main__content">
               <div class="chat-main__content--name">
                 ${message.user_name}
@@ -22,7 +22,7 @@ $(function(){
       return html;
     } else {
       var html =
-      `<div class="chat-main__message-box" data-message-id = message.id>
+      `<div class="chat-main__message-box" data-message-id = ${message.id}>
             <div class="chat-main__content">
               <div class="chat-main__content--name">
                 ${message.user_name}
@@ -76,10 +76,11 @@ $(function(){
       data: {id: last_message_id}
     })
     .done(function(messages){
+      console.log(messages);
       if (messages.length !== 0){
       var insertHTML = '';
       $.each(messages, function(index, letter){
-        insertHTML += buildHTML(letter); 
+        insertHTML += buildHTML(letter);
       });
       $('.chat-main__message-list').append(insertHTML);
       $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight});
@@ -91,6 +92,6 @@ $(function(){
   };
   // イベント発火時のタイミング 7秒に1回
   if (document.location.href.match(/\/groups\/\d+\/messages/)) {
-  setInterval(reloadMessages, 7000);
+    setInterval(reloadMessages, 7000);
   }
 });
